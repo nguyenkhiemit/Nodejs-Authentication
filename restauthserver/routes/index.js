@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
 
 /* POST sign up */
 router.post('/signup', function (req, res) {
-   if(!req.body.name || !req.body.password) {
+   if(!req.body.email || !req.body.password) {
      res.json({success: false, msg: 'Please pass name and password'});
    } else {
      var newUser = new User({
-         name: req.body.name,
+         name: req.body.email,
          password: req.body.password
      });
      newUser.save(function (err) {
@@ -32,7 +32,7 @@ router.post('/signup', function (req, res) {
 /* POST sign in */
 router.post('/authenticate', function (req, res) {
     User.findOne({
-        name: req.body.name
+        name: req.body.email
     }, function (err, user) {
         if(err) throw err;
 
@@ -63,7 +63,7 @@ router.get('/memberinfo', passport.authenticate('jwt', {session: false}), functi
            if(!user) {
                return res.status(403).send({success: false, msg: 'Authentication fail. User not found'});
            } else {
-               return res.json({success: true, msg: 'Welcome ' + user.name + '!'})
+               return res.json({success: true, name: user.name});
            }
         });
     } else {
