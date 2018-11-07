@@ -1,4 +1,4 @@
-# Nodejs-AuthenticationServer
+# Nodejs-Authentication
 
 1.Passport là một module trong NodeJS, tích hợp với rất nhiều kiểu chứng thực (authenticate) phổ biến như: Basic, OpenID, OAuth, OAuth2, JWT .
 <br><br>
